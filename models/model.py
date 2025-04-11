@@ -1,4 +1,4 @@
-from flask import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 db=SQLAlchemy()
 
@@ -14,13 +14,12 @@ class Cities(db.Model):
     id=db.Column(db.Integer,autoincrement=True,primary_key=True)
     name=db.Column(db.String(50),nullable=False)
     country=db.Column(db.String(50),nullable=False)
-    description=db.Column(db.String(100),nullale=True)
+    description=db.Column(db.String(100),nullable=True)
     cit=db.relationship("Places",backref="citi")
 
 
 class Places(db.Model):
     id=db.Column(db.Integer,autoincrement=True,primary_key=True)
-    city_id=db.Column(db.Integer,db.Foreign_key("Cities.id"))
     name=db.Column(db.String(50),nullable=False)
     rating=db.Column(db.Float,nullable=False)
 
@@ -34,6 +33,6 @@ class Communities(db.Model):
 
 class Posts(db.Model):
     id=db.Column(db.Integer,autoincrement=True,primary_key=True)
-    user_id=db.Column(db.Integer,db.Foreign_key("user.id"))
-    community_id=db.Column(db.Integer,db.Foreign_key("communities.id"))
+    user_id=db.Column(db.Integer,db.ForeignKey("user.id"))
+    community_id=db.Column(db.Integer,db.ForeignKey("communities.id"))
     content=db.Column(db.String(100),nullable=False)

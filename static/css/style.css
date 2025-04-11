@@ -1,0 +1,31 @@
+body.dark-theme {
+  background-color: #121212;
+  color: #eee;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.login-container {
+  width: 300px;
+  margin: 100px auto;
+  background: #1e1e1e;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00c9a7;
+  text-align: center;
+}
+.login-container input, .login-container button {
+  display: block;
+  width: 100%;
+  margin: 1em 0;
+  padding: 0.7em;
+  border: none;
+  border-radius: 6px;
+  color:blue;
+}
+.login-container button {
+  background-color: #00c9a7;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}

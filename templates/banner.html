@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>City Explorer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">CityExplorer</div>
+    <nav>
+      <a href="{{url_for('auth.home')}}">Home</a>
+      <a href="#">Features</a>
+      <a href="#">Modes</a>
+      <a href="#">About Us</a>
+    </nav>
+  <div class="profile-icon" onclick="toggleDropdown()">
+    <i data-feather="user"></i>
+  </div>
+  <div id="dropdown-menu" class="dropdown-menu hidden">
+    <a href="#">👤 Profile</a>
+    <a href="#">⚙️ Settings</a>
+    <a href="#">🚪 Logout</a>
+  </div>
+
+    </div>
+  </header>
+
+  <main>
+    <section class="gallery">
+      <div class="slideshow-container">
+        <div class="slide fade">
+          <img src="https://sceneloc8.com/wp-content/uploads/2024/10/Chennai.jpg" alt="City 1">
+        </div>
+        <div class="slide fade">
+          <img src="https://www.clubmahindra.com/blog/media/section_images/unique-thi-9b61e9cde66c5b4.jpg" alt="City 2">
+        </div>
+        <div class="slide fade">
+          <img src="https://www.mistay.in/travel-blog/content/images/2023/03/Hyderabad.jpg" alt="City 3">
+        </div>
+        <div class="slide fade">
+          <img src="https://assets.cntraveller.in/photos/65a4ca16f4f38543f111ce6d/3:2/w_5184,h_3456,c_limit/1444924249" alt="City 3">
+        </div>
+        <div class="dots-container">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+          <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sidebar">
+      <div class="search-box">
+        <i data-feather="search"></i>
+        <input type="text" placeholder="Search cities" />
+      </div>
+
+      <div class="recommendations">
+        <div class="card">🌆 Chennai</div>
+        <div class="card">🕌 Bengaluru</div>
+        <div class="card">🗼 Hyderabad</div>
+        <div class="card">🏯 Konark</div>
+      </div>
+    </section>
+  </main>
+
+    <script>
+    feather.replace();
+
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("slide");
+    const dots = document.getElementsByClassName("dot");
+
+    function showSlide(index) {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+        dots[i].classList.remove("active");
+      }
+      slides[index].style.display = "block";
+      dots[index].classList.add("active");
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    // Initialize
+    showSlide(slideIndex);
+    const interval = setInterval(nextSlide, 1800);
+
+    // Manual control (optional)
+    function currentSlide(n) {
+      slideIndex = n - 1;
+      showSlide(slideIndex);
+      clearInterval(interval); // Optional: pause auto-slide on manual click
+    }
+      function toggleDropdown() {
+    const dropdown = document.getElementById("dropdown-menu");
+    dropdown.classList.toggle("hidden");
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function (event) {
+    const dropdown = document.getElementById("dropdown-menu");
+    const avatar = document.querySelector(".profile-icon");
+    if (!avatar.contains(event.target) && !dropdown.contains(event.target)) {
+      dropdown.classList.add("hidden");
+    }
+  });
+  </script>
+
+</body>
+</html>
