@@ -8,7 +8,7 @@ body.dark-theme {
 .login-container {
   width: 300px;
   margin: 100px auto;
-  background: #1e1e1e;
+  background: gray;
   padding: 2em;
   border-radius: 12px;
   box-shadow: 0 0 15px #00c9a7;
@@ -24,7 +24,7 @@ body.dark-theme {
   color:blue;
 }
 .login-container button {
-  background-color: #00c9a7;
+  background-color: black;
   color: white;
   cursor: pointer;
   font-weight: bold;
