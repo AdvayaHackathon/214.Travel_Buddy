@@ -59,10 +59,10 @@
       </div>
 
       <div class="recommendations">
-        <a href="{{url_for('communitylobby')}}"><div class="card">🌆 Chennai</div></a>
-        <a href="{{url_for('communitylobby')}}"><div class="card">🕌  Bengaluru</div></a>
-        <a href="{{url_for('communitylobby')}}"><div class="card">🗼Hyderabad</div></a>
-        <a href="{{url_for('communitylobby')}}"><div class="card">🏯 Konark</div></a>
+        <a href="{{url_for('communitylobby',cur_log=cur_log,city=1)}}"><div class="card">🌆 Chennai</div></a>
+        <a href="{{url_for('communitylobby',cur_log=cur_log,city=2)}}"><div class="card">🕌  Bengaluru</div></a>
+        <a href="{{url_for('communitylobby',cur_log=cur_log,city=3)}}"><div class="card">🗼Hyderabad</div></a>
+        <a href="{{url_for('communitylobby',cur_log=cur_log,city=4)}}"><div class="card">🏯 Odisha</div></a>
       </div>
     </section>
   </main>
