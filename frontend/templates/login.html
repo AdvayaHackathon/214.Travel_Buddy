@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CityGuide - Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+</head>
+<body class="dark-theme">
+  <div class="login-container animate-fade-in">
+    <img src="{{ url_for('static', filename='images/logo.svg') }}" class="logo" />
+    <h2>Welcome Back</h2>
+    <form id="login-form">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p class="signup-link">Don't have an account? <a href="/signup">Sign Up</a></p>
+  </div>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
