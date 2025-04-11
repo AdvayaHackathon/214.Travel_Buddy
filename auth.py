@@ -1,6 +1,8 @@
 from flask import Blueprint, request, render_template, redirect, session
 from models.model import *
 bp = Blueprint('auth', __name__)
+city_id=[1,2,3]
+cities={"chennai":{1:"Fairlands",2:"Marketplace",3:"3 roads",4:"4 roads",5:"old bus stand",6:"new bustand"}}
 @bp.route('/')
 def home():
     return render_template('login.html')
@@ -15,7 +17,7 @@ def login():
         user = User.query.filter(User.username == username).first()
         if user and user.password == password:
             session["user_id"] = user.id
-            return redirect(f"/dashboard/{user.id}")
+            return redirect(f"/{user.id}/banner")
     return render_template("login.html")
 
 
@@ -27,23 +29,14 @@ def signup():
     username = request.form.get('username')
     password = request.form.get('password')
     session['user_id'] = 2
-    return redirect('/banner')
+    return redirect(f'/banner')
 
 
-@bp.route('/banner')
+@bp.route('/banner',methods=["GET"])
 def banner():
-    return render_template('banner.html')
+    return render_template('banner.html',data=cities)
 
-@bp.route('/community')
-def community():
-    city = request.args.get('city', 'Unknown')
-    return render_template('community.html', city=city)
 
-@bp.route('/chat')
-def chat():
-    group = request.args.get('group', 'General')
-    return render_template('chat.html', group=group)
-
-@bp.route('/place')
-def place():
-    return render_template('place_details.html')
+@bp.route('/communitylobby')
+def communitylobby():
+    return render_template("communitylobby.html",data=cities["chennai"])

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Buddy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #f4f4f4;
+      padding: 2rem;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #0077ff;
+    }
+
+    .title-box {
+      padding: 1rem;
+      background-color: #fffbea;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .community-list {
+      background: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .community-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .community-row:last-child {
+      border-bottom: none;
+    }
+    .community-name {
+      flex: 2;
+      font-weight: 500;
+    }
+    .community-actions {
+      flex: 3;
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 20px;
+      background-color: #fffbea;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #fff4cc;
+    }
+    .eye-icon {
+      font-size: 1.2rem;
+    }
+    @media (max-width: 768px) {
+      .community-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+     .profile-dropdown {
+  position: relative;
+}
+
+.profile-icon {
+  background: #fff;
+  padding: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.profile-icon:hover {
+  background: #f0f0f0;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  width: 150px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-menu a {
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f7f7f7;
+}
+
+/* Utility class to hide menu */
+.hidden {
+  display: none;
+}
+
+.chatbot-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.chatbot-toggle {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.chat-window {
+  width: 320px;
+  height: 420px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.chat-header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 16px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.chat-box {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background: #fff;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+}
+
+.chat-input button {
+  margin-left: 8px;
+  padding: 8px 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.message {
+  padding: 6px 12px;
+  margin: 6px 0;
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+.message.user {
+  background-color: #daf1ff;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.message.bot {
+  background-color: #e9ecef;
+  align-self: flex-start;
+  margin-right: auto;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="/static/logotb.png" width="100px" height="100px"></div>
+    <nav>
+      <a href="#">home</a>
+      <a href="#">features</a>
+      <a href="#">modes</a>
+      <a href="#">about us</a>
+    </nav>
+  <div class="profile-icon" onclick="toggleDropdown()">
+    <i data-feather="user"></i>
+  </div>
+  <div id="dropdown-menu" class="dropdown-menu hidden">
+    <a href="#">👤 Profile</a>
+    <a href="#">⚙️ Settings</a>
+    <a href="#">🚪 Logout</a>
+  </div>
+  </header>
+
+  <div class="title-box">
+    Group across the Chennai
+  </div>
+
+  <div class="community-list">
+    <div class="community-row">
+      <div class="community-name">{{data.1}}</div>
+      <div class="community-actions">
+        <button class="btn eye-icon">👁</button>
+        <button class="btn">Chat</button>
+        <button class="btn">Join Room</button>
+      </div>
+    </div>
+    <div class="community-row">
+      <div class="community-name">{{data.2}}</div>
+      <div class="community-actions">
+        <button class="btn eye-icon">👁</button>
+        <button class="btn">Chat</button>
+        <button class="btn">Join Room</button>
+      </div>
+    </div>
+    <div class="community-row">
+      <div class="community-name">{{data.3}}</div>
+      <div class="community-actions">
+        <button class="btn eye-icon">👁</button>
+        <button class="btn">Chat</button>
+        <button class="btn">Join Room</button>
+      </div>
+    </div>
+    <div class="community-row">
+      <div class="community-name">{{data.4}}</div>
+      <div class="community-actions">
+        <button class="btn eye-icon">👁</button>
+        <button class="btn">Chat</button>
+        <button class="btn">Join Room</button>
+      </div>
+    </div>
+    <div class="community-row">
+      <div class="community-name">{{data.5}}</div>
+      <div class="community-actions">
+        <button class="btn eye-icon">👁</button>
+        <button class="btn">Chat</button>
+        <button class="btn">Join Room</button>
+      </div>
+    </div>
+    <div class="community-row">
+      <div class="community-name">{{data.6}}</div>
+      <div class="community-actions">
+        <button class="btn eye-icon">👁</button>
+        <button class="btn">Chat</button>
+        <button class="btn">Join Room</button>
+      </div>
+    </div>
+      <div class="chatbot-widget">
+  <button class="chatbot-toggle" onclick="toggleChat()">💬</button>
+
+  <div class="chat-window hidden" id="chat-window">
+    <div class="chat-header">
+      <strong>City Chat – Mumbai</strong>
+      <span class="close-btn" onclick="toggleChat()">✖</span>
+    </div>
+
+    <div class="chat-box" id="chat-box">
+      <!-- Chat messages appear here -->
+    </div>
+
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+  </div>
+<script>
+  feather.replace();
+
+  function toggleDropdown() {
+    const dropdown = document.getElementById("dropdown-menu");
+    dropdown.classList.toggle("hidden");
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function (event) {
+    const dropdown = document.getElementById("dropdown-menu");
+    const avatar = document.querySelector(".profile-icon");
+    if (!avatar.contains(event.target) && !dropdown.contains(event.target)) {
+      dropdown.classList.add("hidden");
+    }
+  });
+function toggleChat() {
+  const chat = document.getElementById("chat-window");
+  chat.classList.toggle("hidden");
+}
+
+function sendMessage() {
+  const input = document.getElementById("user-input");
+  const chatBox = document.getElementById("chat-box");
+  const userMsg = input.value.trim();
+
+  if (userMsg === "") return;
+
+  // Add user message
+  const userMessage = document.createElement("div");
+  userMessage.className = "message user";
+  userMessage.innerText = userMsg;
+  chatBox.appendChild(userMessage);
+
+  // Bot reply
+  const botMessage = document.createElement("div");
+  botMessage.className = "message bot";
+  botMessage.innerText = getBotResponse(userMsg);
+  setTimeout(() => {
+    chatBox.appendChild(botMessage);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 500);
+
+  input.value = "";
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getBotResponse(input) {
+  const responses = {
+    "hello": "Hi! 👋 Welcome to Mumbai's community.",
+    "where is marine drive?": "Marine Drive is in South Mumbai along the Arabian Sea.",
+    "thank you": "You're welcome! 😊"
+  };
+
+  const key = input.toLowerCase();
+  return responses[key] || "Try asking a local from the group!";
+}
+</script>
+
+</body>
+</html>
