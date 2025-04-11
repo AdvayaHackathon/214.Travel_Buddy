@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Community Chat UI</title>
+  <link rel="stylesheet" href="/static/css/styl.css" >
+   <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo"><img src="/static/logotb.png" height="100px" width="100px"></div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Features</a>
+      <a href="#">Modes</a>
+      <a href="#">About Us</a>
+    </nav>
+    <div class="user-avatar">
+       <div class="profile-icon" onclick="toggleDropdown()">
+    <i data-feather="user"></i>
+  </div>
+  <div id="dropdown-menu" class="dropdown-menu hidden">
+    <a href="#">👤 Profile</a>
+    <a href="#">⚙️ Settings</a>
+    <a href="#">🚪 Logout</a>
+  </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <div class="search-bar">
+        <input type="text" placeholder="🔍 Search..." />
+      </div>
+      <div class="left-image-card">
+        <div class="placeholder-img">City Image</div>
+      </div>
+    </div>
+
+    <!-- Chat Section -->
+    <div class="chat-panel">
+      <div class="chat-header">
+        <img src="https://img.icons8.com/ios-glyphs/30/user.png" alt="Community" />
+        <span>Community Name</span>
+        <div class="menu-icon">☰</div>
+      </div>
+      <div class="chat-box">
+        <div class="chat-image">Group Image or Message Feed</div>
+      </div>
+      <div class="message-bar">
+        <label class="upload-btn">
+          <input type="file" id="fileInput" hidden />
+          ➕
+        </label>
+        <input type="text" placeholder="Type your message..." />
+        <button>➤</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Chatbot Widget -->
+  <div class="chatbot-widget">
+    <button class="chatbot-toggle" onclick="toggleChat()">💬</button>
+    <div class="chat-window hidden" id="chat-window">
+      <div class="chat-header-bot">
+        ChatBot
+        <span onclick="toggleChat()">✖</span>
+      </div>
+      <div class="chat-box-bot" id="chat-box"></div>
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Ask something..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    feather.replace();
+
+  function toggleDropdown() {
+    const dropdown = document.getElementById("dropdown-menu");
+    dropdown.classList.toggle("hidden");
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function (event) {
+    const dropdown = document.getElementById("dropdown-menu");
+    const avatar = document.querySelector(".profile-icon");
+    if (!avatar.contains(event.target) && !dropdown.contains(event.target)) {
+      dropdown.classList.add("hidden");
+    }
+  });
+    function toggleChat() {
+  const chat = document.getElementById("chat-window");
+  chat.classList.toggle("hidden");
+}
+
+function sendMessage() {
+  const input = document.getElementById("user-input");
+  const chatBox = document.getElementById("chat-box");
+  const userMsg = input.value.trim();
+
+  if (userMsg === "") return;
+
+  // User message
+  const userMessage = document.createElement("div");
+  userMessage.className = "message user";
+  userMessage.innerText = userMsg;
+  chatBox.appendChild(userMessage);
+
+  // Bot reply
+  const botMessage = document.createElement("div");
+  botMessage.className = "message bot";
+  botMessage.innerText = getBotResponse(userMsg);
+
+  setTimeout(() => {
+    chatBox.appendChild(botMessage);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 500);
+
+  input.value = "";
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getBotResponse(input) {
+  const responses = {
+    "hi": "Hello! 👋 How can I help you today?",
+    "what is this?": "This is a community group chat with file sharing and smart bot support.",
+    "thank you": "You're welcome! 😊"
+  };
+
+  const key = input.toLowerCase();
+  return responses[key] || "I'm not sure about that. Try asking differently!";
+}
+
+  </script>
+</body>
+</html>

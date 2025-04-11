@@ -32,6 +32,7 @@ nav a {
   color: #555;
   font-weight: 500;
   transition: color 0.3s ease;
+  text-transform:uppercase;
 }
 
 nav a:hover {
@@ -142,7 +143,9 @@ height: 100%;
   flex: 1;
   font-size: 16px;
 }
-
+.recommendations{
+decoration:none;
+}
 .recommendations .card {
   background: #fffdf0;
   border: 1px solid #ddd;
@@ -309,5 +312,135 @@ height: 100%;
   background-color: #e9ecef;
   align-self: flex-start;
   margin-right: auto;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #f4f6fa;
+}
+
+/* Header */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  background: gray;
+  color: #fff;
+}
+
+.main-header nav a {
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.user-avatar img {
+  width: 30px;
+  border-radius: 40%;
+}
+
+/* Layout */
+.main-container {
+  display: flex;
+  padding: 10px;
+  gap: 5px;
+}
+
+/* Left Panel */
+.left-panel {
+  width: 30%;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+}
+
+.left-image-card {
+  margin-top: 10px;
+  background-color: #fff9e6;
+  padding: 10px;
+  border-radius: 16px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.placeholder-img {
+  font-size: 18px;
+  color: #888;
+}
+
+/* Chat Panel */
+.chat-panel {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.menu-icon {
+  margin-left: auto;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.chat-box {
+  height: 300px;
+  background-color: #fdfbe7;
+  border: 2px solid #87cefa;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.message-bar input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.message-bar button {
+  padding: 10px 16px;
+  border-radius: 50%;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.upload-btn {
+  cursor: pointer;
+  font-size: 24px;
 }
 

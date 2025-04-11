@@ -29,6 +29,7 @@
       text-decoration: none;
       color: #333;
       font-weight: 500;
+      text-transform:uppercase;
     }
     nav a:hover {
       color: #0077ff;
@@ -271,7 +272,7 @@
       <div class="community-name">{{data.1}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <button class="btn">Chat</button>
+        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -279,7 +280,7 @@
       <div class="community-name">{{data.2}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <button class="btn">Chat</button>
+        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -287,7 +288,7 @@
       <div class="community-name">{{data.3}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <button class="btn">Chat</button>
+        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -295,7 +296,7 @@
       <div class="community-name">{{data.4}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <button class="btn">Chat</button>
+        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -303,7 +304,7 @@
       <div class="community-name">{{data.5}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <button class="btn">Chat</button>
+        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -311,7 +312,7 @@
       <div class="community-name">{{data.6}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <button class="btn">Chat</button>
+        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -332,6 +333,7 @@
       <input type="text" id="user-input" placeholder="Type a message..." />
       <button onclick="sendMessage()">Send</button>
     </div>
+  </div>
   </div>
   </div>
 <script>

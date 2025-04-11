@@ -40,3 +40,8 @@ def banner():
 @bp.route('/communitylobby')
 def communitylobby():
     return render_template("communitylobby.html",data=cities["chennai"])
+
+
+@bp.route("/group_chat")
+def group_chat():
+    return render_template("group_chat.html")
