@@ -3,7 +3,7 @@ import auth
 from models.model import *
 app = Flask(__name__)
 app.config['SECRET_KEY']='East'
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///quizmaster.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///TravelBuddy.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
 db.init_app(app)
