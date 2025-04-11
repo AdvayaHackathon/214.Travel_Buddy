@@ -10,12 +10,15 @@
   <div class="login-container animate-fade-in">
     <img src="/static/logotb.png" class="logo" />
     <h2>Create Account</h2>
-    <form id="signup-form" method="POST" action="/signup">
-      <input type="text" name="username" placeholder="Username" required />
-      <input type="password" name="password" placeholder="Password" required />
+    <form id="signup-form" method="POST" action="{{url_for('signup')}}">
+      <input type="text" name="username" placeholder="Username" required >
+      <input type="password" name="password" placeholder="Password" required >
+      <input type="email" name="email" placeholder="email" required>
+      <input type="text" name="phone" placeholder="phone_number" required>
+      <input type="text" name="place" placeholder="place" required>
       <button type="submit" >Sign Up</button>
     </form>
-    <p class="signup-link">Already have an account? <a href="/">Login</a></p>
+    <p class="signup-link">Already have an account? <a href="{{url_for('login')}}">Login</a></p>
   </div>
 </body>
 </html>

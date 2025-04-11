@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,session,request
+from flask import Flask,render_template,redirect,session,request,url_for
 from models.model import *
 app = Flask(__name__)
 app.config['SECRET_KEY']='East'
@@ -13,10 +13,10 @@ city_id=[1,2,3]
 cities={"chennai":{1:"Fairlands",2:"Marketplace",3:"3 roads",4:"4 roads",5:"old bus stand",6:"new bustand"}}
 @app.route('/')
 def home():
-    return render_template('login.html')
+    return redirect(url_for('login'))
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST',"GET"])
 def login():
     if request.method == "POST":
         username = request.form["username"]
@@ -31,16 +31,22 @@ def login():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    if request.method == 'POST':
+    if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
-        session['user_id'] = 2
-        return redirect(f'/banner')
+        email=request.form.get("email")
+        phone_number=request.form.get("phone")
+        place=request.form.get("place")
+        users=User(username=username,password=password,email=email,phone_number=phone_number,city=place)
+        db.session.add(users)
+        db.session.commit()
+        return redirect(url_for('login'))
     return render_template('signup.html')
 
-@app.route('/banner',methods=["GET"])
-def banner():
-    return render_template('banner.html',data=cities)
+
+@app.route('/<int:cur_log>/banner',methods=["GET","POST"])
+def banner(cur_log):
+    return render_template('banner.html',cur_log=cur_log,data=cities)
 
 
 @app.route('/communitylobby')
