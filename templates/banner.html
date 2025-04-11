@@ -67,6 +67,25 @@
       </div>
     </section>
   </main>
+  <div class="chatbot-widget">
+  <button class="chatbot-toggle" onclick="toggleChat()">💬</button>
+
+  <div class="chat-window hidden" id="chat-window">
+    <div class="chat-header">
+      <strong>City Chat – Mumbai</strong>
+      <span class="close-btn" onclick="toggleChat()">✖</span>
+    </div>
+
+    <div class="chat-box" id="chat-box">
+      <!-- Chat messages appear here -->
+    </div>
+
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
 
     <script>
     feather.replace();
@@ -112,6 +131,48 @@
       dropdown.classList.add("hidden");
     }
   });
+      function toggleChat() {
+  const chat = document.getElementById("chat-window");
+  chat.classList.toggle("hidden");
+}
+
+function sendMessage() {
+  const input = document.getElementById("user-input");
+  const chatBox = document.getElementById("chat-box");
+  const userMsg = input.value.trim();
+
+  if (userMsg === "") return;
+
+  // Add user message
+  const userMessage = document.createElement("div");
+  userMessage.className = "message user";
+  userMessage.innerText = userMsg;
+  chatBox.appendChild(userMessage);
+
+  // Bot reply
+  const botMessage = document.createElement("div");
+  botMessage.className = "message bot";
+  botMessage.innerText = getBotResponse(userMsg);
+  setTimeout(() => {
+    chatBox.appendChild(botMessage);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 500);
+
+  input.value = "";
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getBotResponse(input) {
+  const responses = {
+    "hello": "Hi! 👋 Welcome to Mumbai's community.",
+    "where is marine drive?": "Marine Drive is in South Mumbai along the Arabian Sea.",
+    "thank you": "You're welcome! 😊"
+  };
+
+  const key = input.toLowerCase();
+  return responses[key] || "Try asking a local from the group!";
+}
+
   </script>
 
 </body>
