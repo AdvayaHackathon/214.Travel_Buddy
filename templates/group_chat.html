@@ -252,14 +252,14 @@ nav a {
   border-top: 1px solid #ccc;
 }
 
-.chat-input input {
+.chat-input-bot input {
   flex: 1;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 20px;
 }
 
-.chat-input button {
+.chat-input-bot button {
   margin-left: 10px;
   background-color: #007bff;
   color: white;
@@ -334,7 +334,7 @@ nav a {
     <!-- Right: Chat Area -->
     <div class="chat-section">
       <div class="chat-header">{{name}}</div>
-      <div class="chat-box" id="chat-box1">
+      <div class="chat-box" id="chat-box">
         <!-- Messages go here -->
       </div>
 
@@ -358,10 +358,10 @@ nav a {
         ChatBot
         <span onclick="toggleChat()">✖</span>
       </div>
-      <div class="chat-box-bot" id="chat-box"></div>
-      <div class="chat-input">
+      <div class="chat-box-bot" id="chat-box-bot"></div>
+      <div class="chat-input-bot">
         <input type="text" id="user-input" placeholder="Ask something..." />
-        <button onclick="sendMessage()">Send</button>
+        <button onclick="sendMessagebot()">Send</button>
       </div>
     </div>
   </div>
@@ -436,7 +436,7 @@ document.getElementById("addBtn").addEventListener("click", () => {
 const GEMINI_API_KEY = "AIzaSyCGJFmeD2fyfIxYEodG8eWRPTu60pQWwso";
 
 // Main sendMessage function
-async function sendMessage() {
+async function sendMessagebot() {
   const input = document.getElementById("user-input");
   const chatBox = document.getElementById("chat-box");
   const userMsg = input.value.trim();
