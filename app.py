@@ -51,14 +51,14 @@ def banner(cur_log):
     return render_template('banner.html',cur_log=cur_log,data=cities)
 
 
-@app.route('/<int:cur_log>/<int:city>communitylobby')
+@app.route('/<int:cur_log>/<int:city>/communitylobby')
 def communitylobby(cur_log,city):
     return render_template("communitylobby.html",cur_log=cur_log,city=city,data=cities[citys[city-1]],cit=citys[city-1])
 
 
-@app.route("/group_chat")
-def group_chat():
-    return render_template("group_chat.html")
+@app.route("/<int:cur_log>/<int:city>/<int:group>/group_chat")
+def group_chat(cur_log,city,group):
+    return render_template("group_chat.html",cur_log=cur_log,city=city,group=group,name=cities[citys[city-1]][group])
 
 if __name__ == "__main__":
     app.run(debug=True)

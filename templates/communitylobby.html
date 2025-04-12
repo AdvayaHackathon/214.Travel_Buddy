@@ -272,7 +272,7 @@
       <div class="community-name">{{data.1}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
+        <a href="{{url_for('group_chat',cur_log=cur_log,city=city,group=1)}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -280,7 +280,7 @@
       <div class="community-name">{{data.2}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
+        <a href="{{url_for('group_chat',cur_log=cur_log,city=city,group=2)}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -288,7 +288,7 @@
       <div class="community-name">{{data.3}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
+        <a href="{{url_for('group_chat',cur_log=cur_log,city=city,group=3)}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -296,7 +296,7 @@
       <div class="community-name">{{data.4}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
+        <a href="{{url_for('group_chat',cur_log=cur_log,city=city,group=4)}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -304,7 +304,7 @@
       <div class="community-name">{{data.5}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
+        <a href="{{url_for('group_chat',cur_log=cur_log,city=city,group=5)}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -312,7 +312,7 @@
       <div class="community-name">{{data.6}}</div>
       <div class="community-actions">
         <button class="btn eye-icon">👁</button>
-        <a href="{{url_for('group_chat')}}"><button class="btn">Chat</button></a>
+        <a href="{{url_for('group_chat',cur_log=cur_log,city=city,group=6)}}"><button class="btn">Chat</button></a>
         <button class="btn">Join Room</button>
       </div>
     </div>
@@ -321,7 +321,7 @@
 
   <div class="chat-window hidden" id="chat-window">
     <div class="chat-header">
-      <strong>City Chat – Mumbai</strong>
+      <strong>City Chat – {{cit}}</strong>
       <span class="close-btn" onclick="toggleChat()">✖</span>
     </div>
 
