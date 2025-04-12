@@ -242,6 +242,7 @@
   align-self: flex-start;
   margin-right: auto;
 }
+
   </style>
 </head>
 <body>
@@ -316,7 +317,7 @@
         <button class="btn">Join Room</button>
       </div>
     </div>
-      <div class="chatbot-widget">
+     <div class="chatbot-widget">
   <button class="chatbot-toggle" onclick="toggleChat()">💬</button>
 
   <div class="chat-window hidden" id="chat-window">
@@ -334,65 +335,96 @@
       <button onclick="sendMessage()">Send</button>
     </div>
   </div>
-  </div>
-  </div>
-<script>
-  feather.replace();
 
-  function toggleDropdown() {
-    const dropdown = document.getElementById("dropdown-menu");
-    dropdown.classList.toggle("hidden");
+
+    </div>
+  </div>
+  </div>
+  </div>
+  <script>
+feather.replace();
+
+function toggleDropdown() {
+  const dropdown = document.getElementById("dropdown-menu");
+  dropdown.classList.toggle("hidden");
+}
+
+// Close dropdown when clicking outside
+document.addEventListener("click", function (event) {
+  const dropdown = document.getElementById("dropdown-menu");
+  const avatar = document.querySelector(".profile-icon");
+  if (!avatar.contains(event.target) && !dropdown.contains(event.target)) {
+    dropdown.classList.add("hidden");
   }
+});
 
-  // Close dropdown when clicking outside
-  document.addEventListener("click", function (event) {
-    const dropdown = document.getElementById("dropdown-menu");
-    const avatar = document.querySelector(".profile-icon");
-    if (!avatar.contains(event.target) && !dropdown.contains(event.target)) {
-      dropdown.classList.add("hidden");
-    }
-  });
 function toggleChat() {
   const chat = document.getElementById("chat-window");
   chat.classList.toggle("hidden");
 }
 
-function sendMessage() {
+// GEMINI API KEY – replace this with your actual key
+const GEMINI_API_KEY = "AIzaSyCGJFmeD2fyfIxYEodG8eWRPTu60pQWwso";
+
+// Main sendMessage function
+async function sendMessage() {
   const input = document.getElementById("user-input");
   const chatBox = document.getElementById("chat-box");
   const userMsg = input.value.trim();
 
   if (userMsg === "") return;
 
-  // Add user message
+  // User message
   const userMessage = document.createElement("div");
   userMessage.className = "message user";
   userMessage.innerText = userMsg;
   chatBox.appendChild(userMessage);
 
-  // Bot reply
+  // Bot placeholder
   const botMessage = document.createElement("div");
   botMessage.className = "message bot";
-  botMessage.innerText = getBotResponse(userMsg);
-  setTimeout(() => {
-    chatBox.appendChild(botMessage);
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }, 500);
+  botMessage.innerText = "Typing...";
+  chatBox.appendChild(botMessage);
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  // Get AI response
+  const botResponse = await getBotResponse(userMsg);
+  botMessage.innerText = botResponse;
 
   input.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function getBotResponse(input) {
-  const responses = {
-    "hello": "Hi! 👋 Welcome to Mumbai's community.",
-    "where is marine drive?": "Marine Drive is in South Mumbai along the Arabian Sea.",
-    "thank you": "You're welcome! 😊"
-  };
+async function getBotResponse(input) {
+  const url = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=" + GEMINI_API_KEY;
 
-  const key = input.toLowerCase();
-  return responses[key] || "Try asking a local from the group!";
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            role: "user",
+            parts: [{ text: input }]
+          }
+        ]
+      })
+    });
+
+    const data = await res.json();
+    console.log("Gemini API Response:", data);
+
+    const aiText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    return aiText || "🤖 Hmm... I couldn't process that. Try something else!";
+  } catch (error) {
+    console.error("Gemini API Error:", error);
+    return "🚫 Error: Could not connect to Gemini.";
+  }
 }
+
 </script>
 
 </body>
